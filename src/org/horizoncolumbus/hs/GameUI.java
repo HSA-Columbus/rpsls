@@ -23,6 +23,11 @@ public class GameUI extends JFrame {
         setTitle("RPSLS");
         setSize(400,290);
         setLocation(screen.width/2 - getWidth()/2, screen.height/2 - getHeight()/2);
+
+        //default operation for the close/exit button
+        //Needed for the certainty question
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
         singlePlayerButton.setVisible(false);
         twoPlayersButton.setVisible(false);
         playerSelectLabel.setVisible(false);
@@ -69,10 +74,28 @@ public class GameUI extends JFrame {
         singlePlayerButton.addActionListener(e -> {
             OnePlayerUI onePlayerUI = new OnePlayerUI();
             onePlayerUI.setVisible(true);
+            this.dispose(); // dispose the current window after onePlayer is shown
         });
         twoPlayersButton.addActionListener(e -> {
             TwoPlayerUI twoPlayerUI = new TwoPlayerUI();
             twoPlayerUI.setVisible(true);
+            this.dispose(); // dispose the current window after twoPlayer is shown
+        });
+
+        //Listen for window close to ask if the user is certain
+        //If certain, exit the system
+        //else, do nothing
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(null,
+                        "Are you sure you want to exit the game?", "Exit Game?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                    System.exit(0);
+                }
+
+            }
         });
     }
 }
