@@ -2,7 +2,7 @@ package org.horizoncolumbus.hs;
 
 public class Player {
 
-    private String name;
+    public String name;
     public int type;
 
     Player(String newName){
