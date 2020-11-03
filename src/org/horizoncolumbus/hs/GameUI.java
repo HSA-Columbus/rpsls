@@ -18,6 +18,35 @@ public class GameUI extends JFrame {
 
     Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 
+    public void ShowHome(){
+        welcomeLabel.setVisible(true);
+        playButton.setVisible(true);
+        rulesButton.setVisible(true);
+        rulesLabel.setVisible(false);
+        rulesTextArea.setVisible(false);
+        backButton.setVisible(false);
+        singlePlayerButton.setVisible(false);
+        twoPlayersButton.setVisible(false);
+        playerSelectLabel.setVisible(false);
+    }
+    public void PlayScreen(){
+        welcomeLabel.setVisible(false);
+        playButton.setVisible(false);
+        rulesButton.setVisible(false);
+        singlePlayerButton.setVisible(true);
+        twoPlayersButton.setVisible(true);
+        playerSelectLabel.setVisible(true);
+        backButton.setVisible(true);
+    }
+    public void ShowRules(){
+        welcomeLabel.setVisible(false);
+        playButton.setVisible(false);
+        rulesButton.setVisible(false);
+        rulesLabel.setVisible(true);
+        rulesTextArea.setVisible(true);
+        backButton.setVisible(true);
+    }
+
     public GameUI() {
         add(rootPanel);
         setTitle("RPSLS");
@@ -28,48 +57,22 @@ public class GameUI extends JFrame {
         //Needed for the certainty question
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
+        //initial hide
         singlePlayerButton.setVisible(false);
         twoPlayersButton.setVisible(false);
         playerSelectLabel.setVisible(false);
         rulesLabel.setVisible(false);
         rulesTextArea.setVisible(false);
         backButton.setVisible(false);
+
         playButton.addActionListener(e -> {
-            welcomeLabel.setVisible(false);
-            playButton.setVisible(false);
-            rulesButton.setVisible(false);
-            singlePlayerButton.setVisible(true);
-            twoPlayersButton.setVisible(true);
-            playerSelectLabel.setVisible(true);
-            backButton.setVisible(true);
-            backButton.addActionListener(e1 -> {
-                welcomeLabel.setVisible(true);
-                playButton.setVisible(true);
-                rulesButton.setVisible(true);
-                rulesLabel.setVisible(false);
-                rulesTextArea.setVisible(false);
-                backButton.setVisible(false);
-                singlePlayerButton.setVisible(false);
-                twoPlayersButton.setVisible(false);
-                playerSelectLabel.setVisible(false);
-            });
+            PlayScreen();
+            backButton.addActionListener(e1 -> ShowHome());
 
         });
         rulesButton.addActionListener(e -> {
-            welcomeLabel.setVisible(false);
-            playButton.setVisible(false);
-            rulesButton.setVisible(false);
-            rulesLabel.setVisible(true);
-            rulesTextArea.setVisible(true);
-            backButton.setVisible(true);
-            backButton.addActionListener(e12 -> {
-                welcomeLabel.setVisible(true);
-                playButton.setVisible(true);
-                rulesButton.setVisible(true);
-                rulesLabel.setVisible(false);
-                rulesTextArea.setVisible(false);
-                backButton.setVisible(false);
-            });
+            ShowRules();
+            backButton.addActionListener(e12 -> ShowHome());
         });
         singlePlayerButton.addActionListener(e -> {
             OnePlayerUI onePlayerUI = new OnePlayerUI();
