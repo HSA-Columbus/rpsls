@@ -15,8 +15,8 @@ public class Main {
 			gameUI.setVisible(true);
 			gameUI.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}else{
-			Game newCLIGame = new Game();
-			newCLIGame.startGame();
+			CLI newCLIGame = new CLI();
+			newCLIGame.playCLIGame();
 		}
 	}
 }
